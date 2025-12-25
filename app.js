@@ -69,7 +69,7 @@ const authMiddleware = async (req, res, next) => {
 //        ROUTES
 // ======================
 app.get('/', (req, res) => {
-  res.send('index');
+  res.render('index');
 });
 
 app.post('/api/signup', async (req, res) => {
@@ -364,4 +364,5 @@ app.delete('/api/chats/:id', authMiddleware, async (req, res) => {
 app.listen(port, () => {
   console.log(`Powerful LongCat AI chal raha hai → http://localhost:${port}`);
 });
+
 
