@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LongCat AI - Bhai ka Dost</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'primary': '#3b82f6',
+            'primary-dark': '#2563eb',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 min-h-screen flex flex-col font-sans transition-colors duration-300">
+<!-- Navbar + Sidebar -->
+<nav class="bg-white dark:bg-gray-900 flex items-center justify-between px-4 py-3 shadow-sm border-b border-gray-200 dark:border-gray-800 sticky top-0 z-20">
+  <div class="flex items-center gap-3">
+    <!-- Hamburger button to open sidebar (visible on mobile & desktop) -->
+    <button id="sidebarToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+      <svg class="w-6 h-6 text-gray-700 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <img src="https://png.pngtree.com/png-clipart/20250417/original/pngtree-ai-logo-icon-vector-png-image_20731888.png" alt="AI Profile" class="w-9 h-9 rounded-full object-cover border-2 border-primary/30">
+    <div>
+      <h1 class="text-base font-semibold text-gray-900 dark:text-white">Panda Bhai</h1>
+      <p class="text-xs text-green-500 dark:text-green-400">Online - Bhai Ready Hai!</p>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+      <!-- Sun icon (light mode) -->
+      <svg id="sunIcon" class="w-5 h-5 text-yellow-500 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+      <!-- Moon icon (dark mode) -->
+      <svg id="moonIcon" class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Sidebar (hidden by default) -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-30 w-72 bg-white dark:bg-gray-900 shadow-xl transform -translate-x-full transition-transform duration-300 ease-in-out">
+  <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
+    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">LongCat AI</h2>
+    <!-- Close button (X) -->
+    <button id="closeSidebar" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+      <svg class="w-6 h-6 text-gray-700 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="p-4">
+    <button id="newChatBtn" class="w-full flex items-center gap-3 p-3 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+      </svg>
+      New Chat
+    </button>
+  </div>
+
+  <div class="mt-4 px-3">
+    <p class="px-3 text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Recent Chats</p>
+   <ul id="recentChats" class="mt-2 space-y-1">
+  <!-- yaha dynamic li aayengi -->
+</ul>
+  </div>
+
+  <!-- AUTH SECTION -->
+
+<div class="absolute bottom-24 left-4 right-4 space-y-2">
+
+  <!-- Logged Out State -->
+  <div id="authButtons" class="space-y-2">
+    <button id="loginBtn" 
+            class="w-full flex items-center justify-center gap-3 p-3 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors font-medium">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14" />
+      </svg>
+      Log In
+    </button>
+
+    <button id="signupBtn"
+            class="w-full flex items-center justify-center gap-3 p-3 rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors font-medium">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+      </svg>
+      Sign Up
+    </button>
+  </div>
+
+  <!-- Logged In State -->
+  <div id="profileSection" class="hidden">
+    <button id="profileBtn"
+            class="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+      <div id="userAvatar" 
+           class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white font-medium text-sm">
+        ?
+      </div>
+      <div class="text-left flex-1">
+        <p id="userName" class="text-sm font-medium text-gray-900 dark:text-white">Loading...</p>
+        <p id="userHandle" class="text-xs text-gray-500 dark:text-gray-400">@loading</p>
+      </div>
+      <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+
+    <!-- Logout Button (alag se better UX ke liye) -->
+    <button id="logoutBtn"
+            class="w-full mt-2 flex items-center justify-center gap-2 p-3 rounded-lg bg-red-600/10 hover:bg-red-600/20 text-red-600 dark:text-red-400 transition-colors font-medium">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+      </svg>
+      Log Out
+    </button>
+  </div>
+
+</div>
+</aside>
+
+<!-- Overlay when sidebar is open (mobile) -->
+<div id="overlay" class="fixed inset-0 bg-black/50 z-20 hidden transition-opacity duration-300"></div>
+<script>
+// Page load hone pe check karo user logged in hai ya nahi
+document.addEventListener('DOMContentLoaded', () => {
+  const token = localStorage.getItem('token');
+  const user = localStorage.getItem('user');
+
+  const authButtons = document.getElementById('authButtons');
+  const profileSection = document.getElementById('profileSection');
+
+  if (token && user) {
+    // User logged in hai
+    try {
+      const userData = JSON.parse(user);
+
+      // Update profile info
+      document.getElementById('userName').textContent = userData.name || 'Bhai';
+      document.getElementById('userHandle').textContent = `@${userData.email.split('@')[0] || 'user'}`;
+      
+      // Simple avatar (first letter)
+      const firstLetter = (userData.name?.[0] || 'B').toUpperCase();
+      document.getElementById('userAvatar').textContent = firstLetter;
+      // Optional: Agar future mein profile pic aayega to yaha URL set kar sakte ho
+      // document.getElementById('userAvatar').style.backgroundImage = `url('${userData.profilePic}')`;
+
+      authButtons.classList.add('hidden');
+      profileSection.classList.remove('hidden');
+
+    } catch (e) {
+      console.error('Invalid user data in localStorage', e);
+      logout(); // corrupt data → logout
+    }
+  } else {
+    // Not logged in
+    authButtons.classList.remove('hidden');
+    profileSection.classList.add('hidden');
+  }
+
+  // Button clicks
+  document.getElementById('loginBtn')?.addEventListener('click', () => {
+    window.location.href = 'login.html';
+  });
+
+  document.getElementById('signupBtn')?.addEventListener('click', () => {
+    window.location.href = 'signup.html';
+  });
+
+  document.getElementById('logoutBtn')?.addEventListener('click', () => {
+    logout();
+  });
+
+  // Profile button pe click → future mein profile/edit page khul sakta hai
+  document.getElementById('profileBtn')?.addEventListener('click', () => {
+    alert('Profile page abhi banaya nahi hai bhai! 😅');
+    // Ya future mein: window.location.href = 'profile.html';
+  });
+});
+
+// Logout function
+function logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  window.location.reload(); // refresh to show login buttons
+}
+</script>
+<!-- JavaScript to handle sidebar toggle -->
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('sidebarToggle');
+  const closeBtn = document.getElementById('closeSidebar');
+  const overlay = document.getElementById('overlay');
+
+  function openSidebar() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+  }
+
+  function closeSidebarFunc() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+
+  toggleBtn.addEventListener('click', openSidebar);
+  closeBtn.addEventListener('click', closeSidebarFunc);
+  overlay.addEventListener('click', closeSidebarFunc);
+
+</script>
+  <!-- Chat Container -->
+  <div class="flex-1 flex flex-col px-4 pb-32 pt-2 overflow-hidden">
+    <div id="messages" class="flex-1 flex flex-col gap-3 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-200 dark:scrollbar-track-gray-800 p-1" style="scroll-behavior: smooth;">
+      <!-- Messages appear here -->
+    </div>
+  </div>
+
+  <!-- Suggestions -->
+  <div id="suggestions" class="fixed bottom-20 left-0 right-0 z-10 px-4 py-3   transition-all duration-300 ease-in-out opacity-100">
+    <div id="suggestionContainer" class="flex gap-3 max-w-4xl mx-auto whitespace-nowrap overflow-x-auto">
+      <!-- Suggestion buttons -->
+    </div>
+  </div>
+
+  <!-- Input Area -->
+  <div class="fixed bottom-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-t border-gray-200 dark:border-gray-800">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center gap-3">
+      <!-- Voice Button -->
+      <button class="flex items-center justify-center w-11 h-11 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition active:scale-95">
+        <svg class="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3zM5 10v2a7 7 0 0014 0v-2M12 19v4"/>
+        </svg>
+      </button>
+
+      <!-- Textarea -->
+      <textarea id="userInput" rows="1" placeholder="Ask Panda anything..." class="flex-1 resize-none rounded-2xl px-5 py-3 text-sm bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 min-h-[48px] max-h-[140px] overflow-y-auto transition"></textarea>
+
+      <!-- Send Button -->
+      <button onclick="sendMessage()" class="flex items-center justify-center w-11 h-11 rounded-full bg-primary hover:bg-primary-dark shadow-lg shadow-primary/40 transition active:scale-95">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // New Chat Button - Purana sab clear kar ke naya start
+document.getElementById('newChatBtn')?.addEventListener('click', () => {
+  // Reset global variables
+  currentChatId = null;
+  conversation = [];
+
+  // Clear chat screen
+  messagesDiv.innerHTML = '';
+
+  // Welcome message daal do (optional, but mast lagta hai)
+  addMessage('Hey bhai! Naya chat shuru ho gaya. Kya baat karni hai aaj? 🚀', false, false, true);
+
+  // Suggestions wapas initial dikhao
+  renderSuggestions(initialSuggestions);
+
+  // Optional: Sidebar close kar do (better UX)
+  closeSidebarFunc();  // Tumhara close function
+
+  // Agar chaho to recent chats bhi refresh kar sakte ho
+  loadRecentChats();
+});
+  </script>
+
+<script>
+// Global variables
+const messagesDiv = document.getElementById('messages');
+const userInput = document.getElementById('userInput');
+const suggestionsDiv = document.getElementById('suggestions');
+const suggestionContainer = document.getElementById('suggestionContainer');
+let conversation = [];           // Current chat messages array
+let currentChatId = null;        // Current active chat ID from DB
+let currentTopic = null;
+
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+const sunIcon = document.getElementById('sunIcon');
+const moonIcon = document.getElementById('moonIcon');
+const html = document.documentElement;
+
+function initTheme() {
+  if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    html.classList.add('dark'); 
+    moonIcon.classList.remove('hidden'); 
+    sunIcon.classList.add('hidden');
+  } else { 
+    html.classList.remove('dark'); 
+    sunIcon.classList.remove('hidden'); 
+    moonIcon.classList.add('hidden');
+  }
+}
+initTheme();
+
+themeToggle.addEventListener('click', () => {
+  html.classList.toggle('dark');
+  if (html.classList.contains('dark')) {
+    localStorage.theme = 'dark'; 
+    moonIcon.classList.remove('hidden'); 
+    sunIcon.classList.add('hidden'); 
+  } else { 
+    localStorage.theme = 'light'; 
+    sunIcon.classList.remove('hidden'); 
+    moonIcon.classList.add('hidden'); 
+  }
+});
+
+// Auto resize textarea
+function autoResize() {
+  userInput.style.height = 'auto';
+  userInput.style.height = Math.min(userInput.scrollHeight, 120) + 'px';
+}
+userInput.addEventListener('input', () => { autoResize(); hideSuggestions(); });
+window.addEventListener('resize', autoResize);
+
+// Dynamic Suggestions
+const initialSuggestions = [
+  { label: 'Study Tips', prompt: 'Study Tips de bhai' },
+  { label: 'Exam Prep', prompt: 'Exam Prep ka plan bana' },
+  { label: 'Career Guide', prompt: 'Career Guide kar bhai, mera future kya hai?' },
+  { label: 'Motivation', prompt: 'Daily Motivation de' },
+  { label: 'Health Tips', prompt: 'Health Advice le, fit kaise rahun?' },
+  { label: 'Learn Coding', prompt: 'Coding seekhna hai bhai' }
+];
+
+const subSuggestions = {
+  'Study Tips': [
+    { label: 'Note Taking', prompt: 'Effective Note Taking tips de' },
+    { label: 'Time Management', prompt: 'Study ke liye time management kaise karun?' },
+    { label: 'Focus Boost', prompt: 'Padhai mein focus kaise badhaun?' }
+  ],
+  'Exam Prep': [
+    { label: 'Revision Plan', prompt: 'Exam revision strategies bata' },
+    { label: 'Practice Tests', prompt: 'Practice tests kaise lun?' },
+    { label: 'Stress Control', prompt: 'Exam stress manage kaise karun?' }
+  ],
+  // Add baaki subSuggestions if needed
+};
+
+// Render & Hide Suggestions
+function renderSuggestions(sugs) {
+  suggestionContainer.innerHTML = '';
+  sugs.forEach(sug => {
+    const btn = document.createElement('button');
+    btn.className = 'px-4 py-2 bg-gradient-to-r from-primary to-blue-600 text-white rounded-full text-sm font-medium hover:scale-105 transition-transform duration-200 shadow-md animate-fadeIn';
+    btn.textContent = sug.label;
+    btn.onclick = () => {
+      currentTopic = sug.label;
+      hideSuggestions();
+      userInput.value = sug.prompt;
+      sendMessage();
+    };
+    suggestionContainer.appendChild(btn);
+  });
+  suggestionsDiv.style.display = 'block';
+  setTimeout(() => suggestionsDiv.classList.remove('opacity-0', 'translate-y-10'), 10);
+}
+
+function hideSuggestions() {
+  suggestionsDiv.classList.add('opacity-0', 'translate-y-10');
+  setTimeout(() => suggestionsDiv.style.display = 'none', 300);
+}
+
+// Add Message to UI
+function addMessage(content, isUser = false, isTyping = false, fullWidth = false) {
+  const bubbleWrapper = document.createElement('div');
+  bubbleWrapper.className = `flex ${isUser ? 'justify-end' : 'justify-start'} w-full`;
+
+  const bubble = document.createElement('div');
+  bubble.className = `px-4 py-3 rounded-2xl text-base leading-relaxed shadow-sm ${
+    isUser ? 'bg-primary text-white rounded-br-none' : 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-bl-none'
+  } ${isTyping ? 'typing-bubble' : ''}`;
+
+  if (fullWidth) {
+    bubble.style.maxWidth = 'calc(100% - 10px)';
+    bubble.style.margin = '0 5px';
+  } else {
+    bubble.style.maxWidth = '75%';
+  }
+
+  if (isTyping) {
+    bubble.innerHTML = '<div class="flex gap-1.5 py-1"><span class="typing-dot w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></span><span class="typing-dot w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></span><span class="typing-dot w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></span></div>';
+  } else {
+    bubble.textContent = content;
+  }
+
+  bubbleWrapper.appendChild(bubble);
+  messagesDiv.appendChild(bubbleWrapper);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  return bubbleWrapper;
+}
+
+function removeTypingIndicator(bubble) {
+  if (bubble) bubble.remove();
+}
+
+// Send Message
+async function sendMessage() {
+  const text = userInput.value.trim();
+  if (!text) return;
+
+  addMessage(text, true);
+  userInput.value = '';
+  autoResize();
+
+  conversation.push({ role: 'user', content: text });
+
+  const typingBubble = addMessage('', false, true);
+
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      removeTypingIndicator(typingBubble);
+      addMessage('Bhai pehle login kar le! 🔥', false);
+      return;
+    }
+
+    const res = await fetch('http://localhost:3000/api/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        messages: conversation,
+        chatId: currentChatId || undefined
+      })
+    });
+
+    if (!res.ok) {
+      const errData = await res.json();
+      throw new Error(errData.error || 'Server error');
+    }
+
+    const data = await res.json();
+
+    removeTypingIndicator(typingBubble);
+
+    if (data.error) {
+      addMessage('Error: ' + data.error, false);
+    } else {
+      addMessage(data.reply, false);
+      conversation.push({ role: 'assistant', content: data.reply });
+
+      // Save chatId for new chats
+      if (data.chatId && !currentChatId) {
+        currentChatId = data.chatId;
+      }
+
+      // Dynamic suggestions
+      let nextSuggestions = [];
+      if (currentTopic && subSuggestions[currentTopic]) {
+        nextSuggestions = subSuggestions[currentTopic];
+      } else {
+        nextSuggestions = initialSuggestions.filter(s => text.toLowerCase().includes(s.label.toLowerCase()));
+        if (nextSuggestions.length === 0) nextSuggestions = initialSuggestions;
+      }
+      currentTopic = null;
+      renderSuggestions(nextSuggestions);
+    }
+  } catch (err) {
+    removeTypingIndicator(typingBubble);
+    addMessage('Network error bhai... ' + err.message, false);
+  }
+}
+
+// Enter key to send
+userInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+});
+
+// Load Recent Chats (Sidebar)
+async function loadRecentChats() {
+  console.log('Loading recent chats...');
+
+  const token = localStorage.getItem('token');
+  if (!token) {
+    console.log('No token → user not logged in');
+    return;
+  }
+
+  try {
+    const res = await fetch('http://localhost:3000/api/chats', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+
+    if (!res.ok) {
+      console.error('Chats API error:', res.status, await res.text());
+      return;
+    }
+
+    const chats = await res.json();
+    console.log('Recent chats data:', chats);
+
+    const ul = document.getElementById('recentChats');
+    if (!ul) {
+      console.error('UL #recentChats nahi mila');
+      return;
+    }
+
+    ul.innerHTML = '';
+
+    if (chats.length === 0) {
+      ul.innerHTML = '<li class="px-3 py-2 text-sm text-gray-500">Koi chat nahi hai abhi</li>';
+      return;
+    }
+
+    chats.forEach(chat => {
+  const li = document.createElement('li');
+  li.className = 'group relative'; // for hover effect
+
+  li.innerHTML = `
+    <div class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-sm text-gray-700 dark:text-gray-300">
+      <a href="#" data-chat-id="${chat._id}" class="flex-1 truncate">
+        ${chat.title || 'Untitled Chat'}
+      </a>
+      <button data-delete-id="${chat._id}" class="opacity-0 group-hover:opacity-100 text-red-500 hover:text-red-700 transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  `;
+
+  ul.appendChild(li);
+
+  // Load chat on title click
+  li.querySelector('a').addEventListener('click', (e) => {
+    e.preventDefault();
+    loadPreviousChat(chat._id);
+  });
+
+  // Delete on button click
+  li.querySelector('[data-delete-id]').addEventListener('click', async (e) => {
+    e.stopPropagation(); // title click na trigger ho
+    if (confirm('Yeh chat delete karna hai?')) {
+      await deleteChat(chat._id);
+    }
+  });
+});
+  } catch (err) {
+    console.error('Recent chats load error:', err);
+  }
+}
+
+// Load Previous Chat
+async function loadPreviousChat(chatId) {
+  const token = localStorage.getItem('token');
+  if (!token) return;
+
+  try {
+    const res = await fetch(`http://localhost:3000/api/chats/${chatId}`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+
+    if (!res.ok) throw new Error('Chat load failed');
+
+    const messages = await res.json();
+
+    currentChatId = chatId;
+    conversation = messages;
+    messagesDiv.innerHTML = '';
+
+    messages.forEach(msg => {
+      addMessage(msg.content, msg.role === 'user', false, true);
+    });
+
+    // Optional: close sidebar
+    document.getElementById('sidebar')?.classList.remove('translate-x-0');
+  } catch (err) {
+    console.error('Load chat error:', err);
+    addMessage('Pehle wala chat load nahi hua...', false);
+  }
+}
+
+// New Chat Button
+document.getElementById('newChatBtn')?.addEventListener('click', () => {
+  currentChatId = null;
+  conversation = [];
+  messagesDiv.innerHTML = '';
+  addMessage('Hey bhai! Naya chat shuru. Kya baat karni hai aaj? 🚀', false, false, true);
+  renderSuggestions(initialSuggestions);
+  document.getElementById('sidebar')?.classList.remove('translate-x-0');
+});
+
+// Sidebar Open Event (Important!)
+const openSidebarBtn = document.getElementById('openSidebarBtn'); // Ya jo bhi button sidebar kholta hai
+if (openSidebarBtn) {
+  openSidebarBtn.addEventListener('click', () => {
+    document.getElementById('sidebar').classList.add('translate-x-0'); // Ya tumhara animation class
+    loadRecentChats();  // Har baar khulne pe load
+  });
+}
+
+// Page Load
+document.addEventListener('DOMContentLoaded', () => {
+  const token = localStorage.getItem('token');
+  const userDataStr = localStorage.getItem('user'); // Yeh string hai jo login ke time save hui thi
+
+  let welcomeMessage = 'Hey bhai! Kya haal hai? 🚀';
+
+  if (!token) {
+    // Not logged in
+    addMessage('Bhai pehle login kar le, tabhi full maza aayega! 🔥', false, false, true);
+  } else {
+    // Logged in → user ka naam add karo
+    try {
+      const userData = JSON.parse(userDataStr);
+      const userName = userData?.name || 'Bhai'; // Agar name nahi mila to default 'Bhai'
+      
+      welcomeMessage = `Welcome back ${userName} bhai! Purana chat continue kare ya naya? 🚀`;
+    } catch (e) {
+      console.error('User data parse error:', e);
+      welcomeMessage = 'Welcome back bhai! Purana chat continue kare ya naya? 🚀';
+    }
+
+    addMessage(welcomeMessage, false, false, true);
+
+    // Optional: Agar sidebar by default open hai to recent chats load karo
+    // loadRecentChats();
+  }
+
+  autoResize();
+  renderSuggestions(initialSuggestions);
+});
+</script>
+<!-- JavaScript to handle sidebar toggle -->
+<script>
+
+  function openSidebar() {
+    sidebar.classList.remove('-translate-x-full');
+    overlay.classList.remove('hidden');
+
+    // ★★★ Yeh line add karo — sidebar khulte hi recent chats load honge ★★★
+    loadRecentChats();
+  }
+
+  function closeSidebarFunc() {
+    sidebar.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+  }
+
+  toggleBtn.addEventListener('click', openSidebar);
+  closeBtn.addEventListener('click', closeSidebarFunc);
+  overlay.addEventListener('click', closeSidebarFunc);
+</script>
+<script>
+  async function deleteChat(chatId) {
+  const token = localStorage.getItem('token');
+  if (!token) return;
+
+  try {
+    const res = await fetch(`http://localhost:3000/api/chats/${chatId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || 'Delete failed');
+    }
+
+    // Success → refresh recent chats list
+    loadRecentChats();
+
+    // Agar yeh current chat tha to clear kar do
+    if (currentChatId === chatId) {
+      currentChatId = null;
+      conversation = [];
+      messagesDiv.innerHTML = '';
+      addMessage('Chat delete ho gaya bhai! Naya shuru karein? 🚀', false, false, true);
+    }
+
+  } catch (err) {
+    console.error('Delete error:', err);
+    alert('Chat delete nahi hua: ' + err.message);
+  }
+}
+</script>
+
+<style>
+#suggestions::-webkit-scrollbar{display:none;}
+#suggestions{-ms-overflow-style:none;scrollbar-width:none;}
+.animate-fadeIn{animation:fadeIn 0.3s ease-in;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.typing-dot{animation:typing 1.2s infinite ease-in-out;}
+.typing-dot:nth-child(2){animation-delay:0.2s;}
+.typing-dot:nth-child(3){animation-delay:0.4s;}
+@keyframes typing{0%,100%{transform:translateY(0);opacity:0.4;}50%{transform:translateY(-6px);opacity:1;}}
+</style>
+</body>
+</html>

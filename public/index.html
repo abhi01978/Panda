@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LongCat AI • Bhai ka Dost</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            darkbg: '#020617'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-white dark:bg-darkbg text-gray-900 dark:text-gray-100">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="fixed top-0 w-full z-50 backdrop-blur bg-white/70 dark:bg-black/40 border-b border-gray-200 dark:border-gray-800">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-3">
+      <img
+        src="https://png.pngtree.com/png-clipart/20250417/original/pngtree-ai-logo-icon-vector-png-image_20731888.png"
+        class="w-9 h-9 rounded-full"
+        alt="Panda AI Logo">
+      <span class="font-extrabold text-lg tracking-tight">
+        Panda <span class="text-primary">Bhai</span>
+      </span>
+    </div>
+
+    <!-- Nav links (Landing sections only) -->
+    <div class="hidden md:flex gap-8 text-sm font-medium text-gray-600 dark:text-gray-400">
+      <a href="#features" class="hover:text-primary transition">What you learn</a>
+      <a href="#usecases" class="hover:text-primary transition">Use cases</a>
+      <a href="#preview" class="hover:text-primary transition">Live preview</a>
+    </div>
+
+    <!-- CTA -->
+    <a href="./home.html"
+      class="bg-primary hover:bg-blue-700 text-white px-6 py-2.5 rounded-full text-sm font-semibold shadow-md">
+      Try Free 🚀
+    </a>
+
+  </div>
+</nav>
+
+
+<!-- ================= HERO ================= -->
+<section class="pt-36 pb-28 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-blue-100 via-white to-white dark:from-blue-950 dark:to-black"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
+
+    <!-- LEFT CONTENT -->
+    <div>
+      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
+        AI jo samjhe <span class="text-primary">Bhai ki language</span><br>
+        aur sab kuch sikhaye — easy tareeke se.
+      </h1>
+
+      <p class="mt-6 text-gray-600 dark:text-gray-400 text-lg">
+        Panda Bhai sirf chatbot nahi hai.  
+        Yahan tum <b>English bolna</b>, <b>AI / LLM samajhna</b>,  
+        <b>YouTube videos banana</b> aur <b>career grow</b> karna  
+        sab kuch step-by-step sikh sakte ho — bina boring theory ke.
+      </p>
+
+      <!-- SKILL TAGS -->
+      <div class="mt-6 flex flex-wrap gap-3 text-sm">
+        <span class="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40">English Learning</span>
+        <span class="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40">AI • LLM • Prompting</span>
+        <span class="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40">YouTube Scripts</span>
+        <span class="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40">Viral Titles</span>
+        <span class="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40">Career Guidance</span>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-10 flex gap-4 flex-wrap">
+        <a href="./home.html"
+          class="bg-primary text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition">
+          Start Free 🚀
+        </a>
+        <a href="#compare"
+          class="border border-gray-300 dark:border-gray-700 px-8 py-4 rounded-xl font-medium">
+          Why Panda Bhai ?
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT LIVE PREVIEW -->
+    <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-6 border dark:border-gray-800">
+      <p class="text-sm text-gray-500 mb-4">Live preview</p>
+
+      <div class="space-y-3 text-sm">
+
+        <div class="bg-gray-100 dark:bg-gray-800 p-3 rounded-xl">
+          Bhai mujhe English bolni seekhni hai 😟
+        </div>
+
+        <div class="bg-primary text-white p-3 rounded-xl ml-6">
+          Easy bhai 😄  
+          daily 10-minute speaking practice se start karte hain.
+        </div>
+
+        <div class="bg-gray-100 dark:bg-gray-800 p-3 rounded-xl">
+          AI aur LLM kya hota hai? Samajh nahi aa raha
+        </div>
+
+        <div class="bg-primary text-white p-3 rounded-xl ml-6">
+          Simple shabdo me samjhta hoon 👇  
+          LLM = AI ka dimag jo language samajhta hai.
+        </div>
+
+        <div class="bg-gray-100 dark:bg-gray-800 p-3 rounded-xl">
+          Bhai YouTube video ke liye viral title chahiye 🔥
+        </div>
+
+        <div class="bg-primary text-white p-3 rounded-xl ml-6">
+          Done 😎  
+          3 viral titles + full script bana deta hoon.
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+<section id="features" class="py-28 bg-gradient-to-b from-gray-50 to-white dark:from-black dark:to-gray-950">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <h2 class="text-4xl font-extrabold text-center mb-6">
+      Why <span class="text-primary">Panda Bhai</span>? 🚀
+    </h2>
+    <p class="text-center max-w-2xl mx-auto text-gray-600 dark:text-gray-400 mb-16">
+      Ye sirf AI nahi hai — ye **tera bhai hai jo samajhta bhi hai aur solution bhi deta hai**.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-10">
+
+      <!-- Card -->
+      <div class="group p-8 rounded-2xl bg-white dark:bg-gray-900 border dark:border-gray-800 hover:shadow-2xl transition">
+        <div class="text-3xl mb-4">🤝</div>
+        <h3 class="font-bold text-xl mb-3">Bhai-Style Replies</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          No robotic gyaan. Hinglish + human tone — jaise dost samjha raha ho.
+        </p>
+      </div>
+
+      <div class="group p-8 rounded-2xl bg-white dark:bg-gray-900 border dark:border-gray-800 hover:shadow-2xl transition">
+        <div class="text-3xl mb-4">🎓</div>
+        <h3 class="font-bold text-xl mb-3">Study + Career Beast</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          Exams, coding, jobs, freelancing, startup — sab ek jagah.
+        </p>
+      </div>
+
+      <div class="group p-8 rounded-2xl bg-white dark:bg-gray-900 border dark:border-gray-800 hover:shadow-2xl transition">
+        <div class="text-3xl mb-4">🧠</div>
+        <h3 class="font-bold text-xl mb-3">Context Memory</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          Baar-baar same cheez explain karne ki zarurat nahi.
+        </p>
+      </div>
+
+      <div class="group p-8 rounded-2xl bg-white dark:bg-gray-900 border dark:border-gray-800 hover:shadow-2xl transition">
+        <div class="text-3xl mb-4">⚡</div>
+        <h3 class="font-bold text-xl mb-3">Fast & Lightweight</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          Gemini se tez. ChatGPT se zyada simple & focused.
+        </p>
+      </div>
+
+      <div class="group p-8 rounded-2xl bg-white dark:bg-gray-900 border dark:border-gray-800 hover:shadow-2xl transition">
+        <div class="text-3xl mb-4">🔐</div>
+        <h3 class="font-bold text-xl mb-3">Privacy First</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          Data sell nahi hota. Trust > profit.
+        </p>
+      </div>
+
+      <div class="group p-8 rounded-2xl bg-white dark:bg-gray-900 border dark:border-gray-800 hover:shadow-2xl transition">
+        <div class="text-3xl mb-4">🇮🇳</div>
+        <h3 class="font-bold text-xl mb-3">Made for India</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          Indian students, creators & hustlers ke liye bana.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-20">
+      <a href="./home.html"
+        class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl font-semibold shadow-lg transition">
+        Try LogChat AI Free 🚀
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= WHY DIFFERENT ================= -->
+<section id="compare" class="py-28 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-950">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <h2 class="text-4xl font-extrabold text-center mb-6">
+      Why people switch to <span class="text-primary">Panda Bhai</span> 🤯
+    </h2>
+
+    <p class="text-center text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-16">
+      Same AI power, but **zero complexity**.  
+      Built for beginners, creators & bhai log.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-8 items-stretch">
+
+      <!-- ChatGPT -->
+      <div class="rounded-3xl border border-gray-200 dark:border-gray-800 p-8 bg-white dark:bg-gray-900">
+        <h3 class="text-xl font-bold mb-4 text-gray-700 dark:text-gray-300">
+          ChatGPT
+        </h3>
+
+        <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-400">
+          <li>❌ Formal replies</li>
+          <li>❌ Prompt likhna padta hai</li>
+          <li>❌ Beginner ke liye confusing</li>
+          <li>❌ Indian context kam</li>
+          <li>❌ Expensive plans</li>
+        </ul>
+      </div>
+
+      <!-- LongCat AI (HERO) -->
+      <div class="relative rounded-3xl p-10 bg-gradient-to-br from-primary to-blue-700 text-white shadow-2xl scale-105">
+
+        <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-white text-primary px-4 py-1 rounded-full text-xs font-bold shadow">
+          MOST LOVED ❤️
+        </span>
+
+        <h3 class="text-2xl font-extrabold mb-6">
+          LongCat AI
+        </h3>
+
+        <ul class="space-y-4 text-sm">
+          <li>✅ Bhai-style Hinglish replies</li>
+          <li>✅ English learning (step-by-step)</li>
+          <li>✅ AI, LLM, freelancing easily samjho</li>
+          <li>✅ YouTube titles, scripts, hooks</li>
+          <li>✅ Indian exams, jobs, mindset focus</li>
+          <li>✅ Free + affordable plans</li>
+        </ul>
+
+        <a href="./home.html"
+          class="mt-8 inline-block bg-white text-primary px-6 py-3 rounded-xl font-bold">
+          Try Free 🚀
+        </a>
+      </div>
+
+      <!-- Grok / Gemini -->
+      <div class="rounded-3xl border border-gray-200 dark:border-gray-800 p-8 bg-white dark:bg-gray-900">
+        <h3 class="text-xl font-bold mb-4 text-gray-700 dark:text-gray-300">
+          Grok / Gemini
+        </h3>
+
+        <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-400">
+          <li>❌ Technical language</li>
+          <li>❌ AI knowledge required</li>
+          <li>❌ Beginner unfriendly</li>
+          <li>❌ Creator help limited</li>
+          <li>❌ No bhai-style guidance</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="py-24 bg-gray-50 dark:bg-gray-950" id="testimonials">
+
+  <div class="text-center max-w-2xl mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-extrabold">
+      Bhai log bol rahe hain 💬
+    </h2>
+    <p class="mt-4 text-gray-600 dark:text-gray-400">
+      Real users. Real growth. No fake gyaan.
+    </p>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto mt-16 px-6">
+
+    <!-- Buttons -->
+    <button id="prevBtn"
+      class="slider-btn left-0">
+      ‹
+    </button>
+
+    <button id="nextBtn"
+      class="slider-btn right-0">
+      ›
+    </button>
+
+    <!-- Slider Track -->
+    <div class="overflow-hidden">
+      <div id="sliderTrack" class="flex gap-6 transition-transform duration-700">
+
+        <!-- Card -->
+        <div class="testimonial-card">
+          <p>
+            “English bolna pehle impossible lagta tha.  
+            Ab confidence aa gaya bhai 💪”
+          </p>
+          <div class="user">
+            <img src="https://i.pravatar.cc/100?img=12">
+            <div>
+              <h4>Rahul Verma</h4>
+              <span>Student</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p>
+            “YouTube titles + scripts se views double ho gaye.  
+            LongCat AI OP hai 🚀”
+          </p>
+          <div class="user">
+            <img src="https://i.pravatar.cc/100?img=32">
+            <div>
+              <h4>Aman Khan</h4>
+              <span>Creator</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p>
+            “AI, LLM, freelancing sab easy language me samjhaya.  
+            Zero fear now.”
+          </p>
+          <div class="user">
+            <img src="https://i.pravatar.cc/100?img=56">
+            <div>
+              <h4>Sahil Patel</h4>
+              <span>Freelancer</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p>
+            “ChatGPT se zyada friendly.  
+            Ye AI bhai jaisa guide karta hai.”
+          </p>
+          <div class="user">
+            <img src="https://i.pravatar.cc/100?img=45">
+            <div>
+              <h4>Pooja Sharma</h4>
+              <span>Beginner</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+  <p>
+    “Freelancing roadmap + client pitch sab mil gaya.  
+    Ab skill ke sath confidence bhi hai.”
+  </p>
+  <div class="user">
+    <img src="https://i.pravatar.cc/100?img=17">
+    <div>
+      <h4>Shubham Joshi</h4>
+      <span>Freelancer</span>
+    </div>
+  </div>
+</div>
+
+<div class="testimonial-card">
+  <p>
+    “ChatGPT me lagta tha teacher bol raha hai.  
+    Yahan bhai samjhata hai 😌”
+  </p>
+  <div class="user">
+    <img src="https://i.pravatar.cc/100?img=29">
+    <div>
+      <h4>Ankit Kumar</h4>
+      <span>Beginner</span>
+    </div>
+  </div>
+</div>
+
+<div class="testimonial-card">
+  <p>
+    “YouTube video script + title + description  
+    ek click me ready ho jata hai.”
+  </p>
+  <div class="user">
+    <img src="https://i.pravatar.cc/100?img=52">
+    <div>
+      <h4>Priyanshi</h4>
+      <span>YouTuber</span>
+    </div>
+  </div>
+</div>
+
+<div class="testimonial-card">
+  <p>
+    “Normal chatbot nahi hai ye.  
+    Pure career ka guide hai.”
+  </p>
+  <div class="user">
+    <img src="https://i.pravatar.cc/100?img=8">
+    <div>
+      <h4>Deepak Saini</h4>
+      <span>College Student</span>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </div>
+  <style>
+.testimonial-card {
+  min-width: 320px;
+  background: white;
+  padding: 1.6rem;
+  border-radius: 1.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.dark .testimonial-card {
+  background: #111827;
+  border-color: #1f2937;
+}
+
+.testimonial-card p {
+  color: #374151;
+  line-height: 1.6;
+}
+
+.dark .testimonial-card p {
+  color: #d1d5db;
+}
+
+.user {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.user img {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  font-size: 26px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+.dark .slider-btn {
+  background: #111827;
+  color: white;
+}
+
+.slider-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+</style>
+<script>
+const track = document.getElementById("sliderTrack");
+const cards = document.querySelectorAll(".testimonial-card");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+let index = 0;
+const cardWidth = cards[0].offsetWidth + 24;
+
+function updateSlider() {
+  track.style.transform = `translateX(-${index * cardWidth}px)`;
+}
+
+nextBtn.onclick = () => {
+  index = (index + 1) % cards.length;
+  updateSlider();
+};
+
+prevBtn.onclick = () => {
+  index = (index - 1 + cards.length) % cards.length;
+  updateSlider();
+};
+
+/* Auto slide */
+setInterval(() => {
+  index = (index + 1) % cards.length;
+  updateSlider();
+}, 4000);
+</script>
+
+
+</section>
+<!-- ================= PRICING ================= -->
+<section id="pricing" class="py-28 bg-gray-50 dark:bg-black">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <h2 class="text-4xl font-extrabold text-center mb-6">
+      Simple Pricing 💰
+    </h2>
+    <p class="text-center text-gray-600 dark:text-gray-400 mb-16">
+      Pehle free try karo, phir level up karo 🔥
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-10">
+
+      <!-- Free -->
+      <div class="p-8 rounded-2xl bg-white dark:bg-gray-900 border text-center">
+        <h3 class="font-bold text-xl mb-3">Free</h3>
+        <p class="text-4xl font-extrabold mb-6">₹0</p>
+        <ul class="space-y-2 text-sm mb-8">
+          <li>✔ Limited chats</li>
+          <li>✔ Study help</li>
+          <li>✔ Career guidance</li>
+        </ul>
+        <a href="signup.html"
+          class="block w-full border border-primary text-primary hover:bg-primary hover:text-white py-3 rounded-xl font-medium transition">
+          Start Free
+        </a>
+      </div>
+
+      <!-- Pro -->
+      <div class="relative p-10 rounded-2xl bg-primary text-white text-center scale-105 shadow-2xl">
+        <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-white text-primary text-xs font-bold px-4 py-1 rounded-full">
+          MOST POPULAR
+        </span>
+        <h3 class="font-bold text-xl mb-3">Pro</h3>
+        <p class="text-4xl font-extrabold mb-6">₹199<span class="text-sm font-medium">/mo</span></p>
+        <ul class="space-y-2 text-sm mb-8">
+          <li>✔ Unlimited chat</li>
+          <li>✔ Memory & context</li>
+          <li>✔ Priority speed</li>
+        </ul>
+        <a href="payment.html?plan=pro"
+          class="block w-full bg-white text-primary hover:bg-gray-100 py-3 rounded-xl font-bold transition">
+          Buy Now 🚀
+        </a>
+      </div>
+
+      <!-- Creator -->
+      <div class="p-8 rounded-2xl bg-white dark:bg-gray-900 border text-center">
+        <h3 class="font-bold text-xl mb-3">Creator</h3>
+        <p class="text-4xl font-extrabold mb-6">₹499<span class="text-sm font-medium">/mo</span></p>
+        <ul class="space-y-2 text-sm mb-8">
+          <li>✔ Content & script AI</li>
+          <li>✔ YouTube / Reels help</li>
+          <li>✔ Early features</li>
+        </ul>
+        <a href="payment.html?plan=creator"
+          class="block w-full bg-primary hover:bg-primary-dark text-white py-3 rounded-xl font-medium transition">
+          Buy Now
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= CTA ================= -->
+<section class="relative py-28 text-center bg-gradient-to-r from-primary to-primary-dark text-white overflow-hidden">
+
+  <!-- Background glow -->
+  <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top,white,transparent_60%)]"></div>
+
+  <div class="relative max-w-3xl mx-auto px-6">
+    <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+      Ready to chat with your <br>
+      <span class="text-yellow-300">Panda Bhai</span>? 🤝
+    </h2>
+
+    <p class="mb-10 text-lg text-white/90">
+      Students, creators aur hustlers already switch kar chuke hain <br>
+      <span class="font-semibold">boring chatbots</span> se <span class="font-semibold">Panda Bhai</span> pe.
+    </p>
+
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="./home.html"
+        class="bg-white text-primary px-10 py-4 rounded-xl font-bold text-lg shadow-xl hover:scale-105 transition">
+        Start Free Now 🚀
+      </a>
+
+      <a href="#features"
+        class="border border-white/40 px-10 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition">
+        See Features 👀
+      </a>
+    </div>
+
+    <!-- Trust line -->
+    <p class="mt-10 text-sm text-white/80">
+      ✔ No credit card required &nbsp; • &nbsp; ✔ Cancel anytime &nbsp; • &nbsp; ✔ Made for India 🇮🇳
+    </p>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<section class="min-h-screen flex items-center justify-center text-center bg-black text-white px-6">
+  <div class="max-w-3xl">
+
+    <p class="text-sm uppercase tracking-widest text-gray-400 mb-4">
+      Not another chatbot
+    </p>
+
+    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+      An AI that talks like a <span class="text-primary">real bhai</span>,  
+      not like a machine.
+    </h1>
+
+    <p class="mt-6 text-lg text-gray-300">
+      Study ho, career ho, coding ho ya life confusion —  
+      Panda Bhai samajhta hai, sirf answer nahi deta.
+    </p>
+
+    <div class="mt-10 flex justify-center gap-4 flex-wrap">
+      <a href="./home.html"
+        class="bg-primary px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition">
+        Start Free
+      </a>
+      <a href="#compare"
+        class="border border-gray-700 px-8 py-4 rounded-xl text-lg hover:bg-white/10 transition">
+        Why Panda Bhai ?
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+</body>
+</html>

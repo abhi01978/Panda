@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signup • LongCat AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#3b82f6', 'primary-dark': '#2563eb' } } }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-950 min-h-screen flex items-center justify-center text-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+<div class="w-full max-w-md bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-8 border border-gray-200/50 dark:border-gray-800/50">
+
+  <div class="flex flex-col items-center mb-8">
+    <img src="https://png.pngtree.com/png-clipart/20250417/original/pngtree-ai-logo-icon-vector-png-image_20731888.png"
+         class="w-20 h-20 rounded-full border-4 border-primary/30 mb-4 shadow-md">
+    <h1 class="text-2xl font-bold">Create your account</h1>
+    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+      Join LongCat AI — Bhai ka Dost 🤝
+    </p>
+  </div>
+
+  <form id="signupForm" class="space-y-5">
+    <!-- Full Name -->
+    <div>
+      <label class="block text-sm font-medium mb-1.5">Full Name</label>
+      <input id="name" type="text" required minlength="2" maxlength="50"
+        class="w-full px-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 border border-transparent focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition"
+        placeholder="Bhai ka poora naam">
+    </div>
+
+    <!-- Mobile Number (optional for now) -->
+    <div>
+      <label class="block text-sm font-medium mb-1.5">Mobile Number <span class="text-gray-400 text-xs">(optional)</span></label>
+      <div class="relative">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">+91</span>
+        <input id="mobile" type="tel" pattern="[0-9]{10}" maxlength="10"
+          class="w-full pl-16 pr-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 border border-transparent focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition"
+          placeholder="98765 43210">
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label class="block text-sm font-medium mb-1.5">Email</label>
+      <input id="email" type="email" required
+        class="w-full px-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 border border-transparent focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition"
+        placeholder="bhai@example.com">
+    </div>
+
+    <!-- Password -->
+    <div class="relative">
+      <label class="block text-sm font-medium mb-1.5">Password</label>
+      <input id="password" type="password" required minlength="8"
+        class="w-full px-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 border border-transparent focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition"
+        placeholder="••••••••">
+      <button type="button" onclick="togglePassword('password')"
+        class="absolute right-4 top-[42px] text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition text-xl">
+        👁️
+      </button>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="relative">
+      <label class="block text-sm font-medium mb-1.5">Confirm Password</label>
+      <input id="confirmPassword" type="password" required
+        class="w-full px-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 border border-transparent focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition"
+        placeholder="Same wala daal do">
+      <button type="button" onclick="togglePassword('confirmPassword')"
+        class="absolute right-4 top-[42px] text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition text-xl">
+        👁️
+      </button>
+      <p id="passwordMatch" class="text-xs mt-1.5 hidden"></p>
+    </div>
+
+    <!-- Error message -->
+    <p id="formError" class="text-red-500 text-sm hidden"></p>
+
+    <button id="submitBtn" type="submit"
+      class="w-full bg-gradient-to-r from-primary to-primary-dark hover:from-blue-700 hover:to-indigo-700 text-white py-3.5 rounded-xl font-medium transition shadow-lg disabled:opacity-60">
+      Create Account
+    </button>
+  </form>
+
+  <div class="flex items-center my-6">
+    <div class="flex-1 h-px bg-gray-200 dark:bg-gray-700"></div>
+    <span class="px-4 text-xs text-gray-500 dark:text-gray-400 uppercase">or</span>
+    <div class="flex-1 h-px bg-gray-200 dark:bg-gray-700"></div>
+  </div>
+
+  <button class="w-full flex items-center justify-center gap-3 border border-gray-300 dark:border-gray-700 py-3.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition font-medium">
+    <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-6 h-6">
+    Continue with Google
+  </button>
+
+  <p class="text-sm text-center mt-8 text-gray-500 dark:text-gray-400">
+    Already have an account?
+    <a href="login.html" class="text-primary hover:underline font-medium">Login here</a>
+  </p>
+</div>
+
+<script>
+function togglePassword(id) {
+  const input = document.getElementById(id);
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+
+const form = document.getElementById('signupForm');
+const submitBtn = document.getElementById('submitBtn');
+const errorEl = document.getElementById('formError');
+const matchMsg = document.getElementById('passwordMatch');
+
+function showError(msg) {
+  errorEl.textContent = msg;
+  errorEl.classList.remove('hidden');
+}
+
+function hideError() {
+  errorEl.classList.add('hidden');
+  errorEl.textContent = '';
+}
+
+form.addEventListener('input', () => {
+  const pw = document.getElementById('password').value;
+  const cpw = document.getElementById('confirmPassword').value;
+
+  if (!cpw) {
+    matchMsg.classList.add('hidden');
+    submitBtn.disabled = false;
+    return;
+  }
+
+  if (pw === cpw) {
+    matchMsg.textContent = 'Passwords match ✓';
+    matchMsg.className = 'text-green-500 text-xs mt-1.5';
+    submitBtn.disabled = false;
+  } else {
+    matchMsg.textContent = 'Passwords do not match ✗';
+    matchMsg.className = 'text-red-500 text-xs mt-1.5';
+    submitBtn.disabled = true;
+  }
+});
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  hideError();
+
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+
+  if (password !== confirmPassword) {
+    showError("Passwords do not match");
+    return;
+  }
+
+  if (password.length < 8) {
+    showError("Password must be at least 8 characters");
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Creating...";
+
+  try {
+    const res = await fetch("http://localhost:3000/api/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      showError(data.message || "Signup failed");
+      return;
+    }
+
+    alert("Account created successfully 🎉\nPlease login now!");
+    window.location.href = "login.html";
+
+  } catch (err) {
+    showError("Something went wrong. Please try again.");
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Create Account";
+  }
+});
+</script>
+</body>
+</html>
