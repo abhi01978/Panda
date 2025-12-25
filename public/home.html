@@ -434,7 +434,7 @@ async function sendMessage() {
       return;
     }
 
-    const res = await fetch('http://localhost:3000/api/chat', {
+    const res = await fetch('https://panda-1-bzm5.onrender.com/api/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -502,7 +502,7 @@ async function loadRecentChats() {
   }
 
   try {
-    const res = await fetch('http://localhost:3000/api/chats', {
+    const res = await fetch('https://panda-1-bzm5.onrender.com/api/chats', {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 
@@ -571,7 +571,7 @@ async function loadPreviousChat(chatId) {
   if (!token) return;
 
   try {
-    const res = await fetch(`http://localhost:3000/api/chats/${chatId}`, {
+    const res = await fetch(`https://panda-1-bzm5.onrender.com/api/chats/${chatId}`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 
@@ -672,7 +672,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!token) return;
 
   try {
-    const res = await fetch(`http://localhost:3000/api/chats/${chatId}`, {
+    const res = await fetch(`https://panda-1-bzm5.onrender.com/api/chats/${chatId}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -714,4 +714,5 @@ document.addEventListener('DOMContentLoaded', () => {
 </style>
 </body>
 </html>
+
 
